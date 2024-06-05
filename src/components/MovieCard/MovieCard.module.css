@@ -1,0 +1,14 @@
+.cardWrapper {
+	width: 100%;
+}
+
+.cardImg {
+	width: 150px;
+	border-radius: 8px;
+}
+.cardTitle {
+	font-weight: bold;
+}
+.cardDate {
+	color: silver;
+}

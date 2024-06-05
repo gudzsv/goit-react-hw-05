@@ -1,0 +1,11 @@
+.nav {
+	display: flex;
+	gap: 20px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.019);
+	box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.3);
+	padding: 10px;
+}
+
+.active {
+	color: #646cff;
+}

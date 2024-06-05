@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"baseUrl": "src",
+		"paths": {
+			"routes/*": ["src/routes/*"],
+			"components/*": ["src/components/*"],
+			"pages/*": ["src/pages/*"],
+			"api/*": ["src/api/*"],
+			"hooks/*": ["src/hooks/*"],
+			"constants/*": ["src/constants/*"]
+		}
+	},
+	"include": ["src"]
+}

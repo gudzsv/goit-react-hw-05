@@ -1,0 +1,14 @@
+.cardList {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+}
+.cardItem {
+	text-align: center;
+	padding: 10px;
+	border: 1px solid violet;
+	border-radius: 8px;
+	width: 200px;
+	height: 300px;
+	cursor: pointer;
+}
