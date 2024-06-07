@@ -1,0 +1,31 @@
+.reviewTitle {
+	text-align: center;
+	margin-block: 20px;
+	color: #646cff;
+}
+.reviewContentWrapper {
+	display: flex;
+	gap: 40px;
+	flex-direction: row-reverse;
+}
+.reviewImage {
+	border-radius: 8px;
+	width: 20%;
+}
+.reviewContent {
+	padding: 16px;
+	border: 1px solid #646cff;
+	border-radius: 8px;
+	flex-grow: 1;
+}
+.reviewRating {
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+.reviewRatingValue {
+	margin-left: 10px;
+	color: #646cff;
+}
+.reviewDescription {
+	color: silver;
+}

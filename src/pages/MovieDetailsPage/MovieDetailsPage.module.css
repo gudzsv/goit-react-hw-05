@@ -1,0 +1,10 @@
+.title {
+	text-align: center;
+	margin-bottom: 40px;
+	padding-top: 40px;
+	text-transform: uppercase;
+}
+
+.goBackBtn {
+	margin-bottom: 20px;
+}

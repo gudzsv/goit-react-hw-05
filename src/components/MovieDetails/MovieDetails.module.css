@@ -1,0 +1,37 @@
+.contentWrapper {
+	display: flex;
+	gap: 40px;
+	padding-bottom: 40px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.329);
+	margin-bottom: 10px;
+}
+
+.posterImg {
+	border-radius: 8px;
+	flex-grow: 1;
+	width: 25%;
+}
+
+.content {
+	padding: 16px;
+	border: 1px solid #646cff;
+	border-radius: 8px;
+	flex-grow: 1;
+}
+
+.contentTitle {
+	font-size: xx-large;
+	font-weight: 700;
+}
+
+.score {
+	display: block;
+}
+
+.overviewTitle {
+	font-weight: 700;
+}
+
+.genresTitle {
+	font-weight: 700;
+}

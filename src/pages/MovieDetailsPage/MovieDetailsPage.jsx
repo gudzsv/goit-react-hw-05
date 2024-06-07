@@ -1,21 +1,72 @@
-import { Link, Outlet } from 'react-router-dom';
+import { fetchMovieById } from 'api/movies';
+
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import styles from './MovieDetailsPage.module.css';
+import MovieDetails from 'components/MovieDetails/MovieDetails';
+import Loader from 'components/Loader/Loader';
+import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
+import SubNavigation from 'components/SubNavigation/SubNavigation';
 
 const MovieDetailsPage = () => {
+	const { movieId } = useParams();
+	const [movieDetail, setMovieDetail] = useState([]);
+	const [isLoading, setIsLoading] = useState(false);
+	const [isError, setIsError] = useState(false);
+	const location = useLocation();
+	const refLocation = useRef(location.state);
+
+	useEffect(() => {
+		if (!movieId) return;
+		const handleMovieById = async () => {
+			try {
+				setIsLoading(true);
+				setIsError(false);
+				const data = await fetchMovieById(movieId);
+				setMovieDetail(data);
+			} catch (error) {
+				setIsError(true);
+			} finally {
+				setIsLoading(false);
+			}
+		};
+		handleMovieById();
+	}, [movieId]);
+
+	const score = useMemo(() => {
+		if (!movieDetail.vote_average || !movieDetail.vote_count) return 0;
+		return ((movieDetail.vote_average / movieDetail.vote_count) * 100).toFixed(
+			0
+		);
+	}, [movieDetail.vote_average, movieDetail.vote_count]);
+
+	const genres = useMemo(() => {
+		if (!movieDetail.genres) return;
+		const genresOfMovie =
+			movieDetail.genres.length > 0 &&
+			movieDetail.genres.map((genre) => genre.name).join(' ');
+		return genresOfMovie;
+	}, [movieDetail.genres]);
+
 	return (
-		<section>
-			MovieDetailsPage
-			<h1 className='hidden'></h1>
-			<nav>
-				<p>Additional information</p>
-				<ul>
-					<li>
-						<Link to='cast'>Cast</Link>
-					</li>
-					<li>
-						<Link to='reviews'>Reviews</Link>
-					</li>
-				</ul>
-			</nav>
+		<section className='container'>
+			<h1 className={styles.title}>Detail info</h1>
+			<button
+				className={styles.goBackBtn}
+				type='button'
+				aria-label='go to home page'
+			>
+				<Link to={refLocation.current}>GoBack</Link>
+			</button>
+			{movieId && !isLoading && (
+				<MovieDetails movieDetail={movieDetail} score={score} genres={genres} />
+			)}
+			{isLoading && <Loader />}
+			{isError && <ErrorMessage />}
+
+			<h2 className={styles.additionalTitle}>Additional information</h2>
+			<SubNavigation />
+
 			<Outlet />
 		</section>
 	);

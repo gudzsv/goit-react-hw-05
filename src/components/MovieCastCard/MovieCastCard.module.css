@@ -1,0 +1,35 @@
+.avatarImg {
+	width: 250px;
+}
+
+.hr {
+	color: #646cff;
+	background-color: #646cff;
+	height: 2px;
+	border: none;
+	width: 100%;
+	margin-top: 4px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.cardContent {
+	text-align: center;
+}
+
+.cardTitle {
+	text-align: center;
+	font-weight: 700;
+	margin-top: 10px;
+}
+
+.cardDescription {
+	color: gray;
+	width: 250px;
+	height: 50px;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	line-clamp: 3;
+	text-overflow: ellipsis;
+}
