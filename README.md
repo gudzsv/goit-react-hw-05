@@ -35,7 +35,7 @@ axios.get(url, options)
 ```
 Токен доступу отримується з розділу "**API Read Access Token**" [на сторінці API](https://www.themoviedb.org/settings/api).
 
-![alt text](image.png)
+![alt text](./src/assets/image.png)
 
 #### Шлях до зображень
 
