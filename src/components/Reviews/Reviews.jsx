@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import styles from './Reviews.module.css'
 import { fetchMovieReview } from 'api/movies';
+
 import Loader from 'components/Loader/Loader';
 import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
-import MovieReviewCard from 'components/MovieReviewCard/MovieReviewCard';
+import ReviewCard from 'components/ReviewCard/ReviewCard';
+import NoFoundMessage from 'components/NoFoundMessage/NoFoundMessage';
 
-const MovieReviews = () => {
+const Reviews = () => {
 	const { movieId } = useParams();
 	const [reviews, setReviews] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
@@ -14,10 +17,12 @@ const MovieReviews = () => {
 
 	useEffect(() => {
 		const handleMovieReview = async () => {
+			if (!movieId) return;
+
+			setIsLoading(true);
+			setIsError(false);
+
 			try {
-				if (!movieId) return;
-				setIsLoading(true);
-				setIsError(false);
 				const { results } = await fetchMovieReview(movieId);
 				setReviews(results);
 			} catch (error) {
@@ -29,20 +34,18 @@ const MovieReviews = () => {
 		handleMovieReview();
 	}, [movieId]);
 
-	if (reviews?.length === 0) {
-		return <div>Unfortunately, there are no reviews for this movie</div>;
-	}
-
-	if (reviews?.length > 0) {
-		return <MovieReviewCard reviews={reviews} />;
-	}
-
 	return (
-		<div>
+		<div className={styles.content}>
+			{reviews && reviews.length > 0 && <ReviewCard reviews={reviews} />}
+			{reviews && reviews.length === 0 && (
+				<NoFoundMessage
+					text={'Unfortunately, there are no reviews for this movie'}
+				/>
+			)}
 			{isLoading && reviews === null && <Loader />}
 			{isError && <ErrorMessage />}
 		</div>
 	);
 };
 
-export default MovieReviews;
+export default Reviews;

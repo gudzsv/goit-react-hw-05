@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
+import { fetchTrendMovies } from 'api/movies';
+
+import { Heading } from 'components/Heading/Heading';
 import Loader from 'components/Loader/Loader';
 import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
 import MovieList from 'components/MovieList/MovieList';
-
-import styles from './HomePage.module.css';
-import { fetchTrendMovies } from 'api/movies';
 
 const HomePage = () => {
 	const [movies, setMovies] = useState([]);
@@ -14,11 +14,11 @@ const HomePage = () => {
 
 	useEffect(() => {
 		const handleTrendMovies = async () => {
-			try {
-				setIsLoading(true);
-				setIsError(false);
-				const { results } = await fetchTrendMovies();
+			setIsLoading(true);
+			setIsError(false);
 
+			try {
+				const { results } = await fetchTrendMovies();
 				setMovies(results);
 			} catch (error) {
 				setIsError(true);
@@ -31,7 +31,7 @@ const HomePage = () => {
 
 	return (
 		<section className='container'>
-			<h1 className={styles.title}>Trending today</h1>
+			<Heading title={'Trending today'} />
 			{movies.length > 0 && !isLoading && <MovieList data={movies} />}
 			{isLoading && <Loader />}
 			{isError && <ErrorMessage />}

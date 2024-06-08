@@ -1,12 +1,16 @@
-import { fetchMovieById } from 'api/movies';
-
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+
 import styles from './MovieDetailsPage.module.css';
+
+import { fetchMovieById } from 'api/movies';
+import { DEFAULT_MOVIE_LINK } from 'constants/api';
+
 import MovieDetails from 'components/MovieDetails/MovieDetails';
 import Loader from 'components/Loader/Loader';
 import ErrorMessage from 'components/ErrorMessage/ErrorMessage';
 import SubNavigation from 'components/SubNavigation/SubNavigation';
+import { Heading } from 'components/Heading/Heading';
 
 const MovieDetailsPage = () => {
 	const { movieId } = useParams();
@@ -19,9 +23,10 @@ const MovieDetailsPage = () => {
 	useEffect(() => {
 		if (!movieId) return;
 		const handleMovieById = async () => {
+			setIsLoading(true);
+			setIsError(false);
+
 			try {
-				setIsLoading(true);
-				setIsError(false);
 				const data = await fetchMovieById(movieId);
 				setMovieDetail(data);
 			} catch (error) {
@@ -50,21 +55,28 @@ const MovieDetailsPage = () => {
 
 	return (
 		<section className='container'>
-			<h1 className={styles.title}>Detail info</h1>
-			<button
-				className={styles.goBackBtn}
-				type='button'
-				aria-label='go to home page'
-			>
-				<Link to={refLocation.current}>GoBack</Link>
-			</button>
+			<Heading title={'Detail info'} />
+
+			<Link to={refLocation.current || DEFAULT_MOVIE_LINK}>
+				<button
+					className={styles.goBackBtn}
+					type='button'
+					aria-label='go to home page'
+				>
+					GoBack
+				</button>
+			</Link>
+
 			{movieId && !isLoading && (
 				<MovieDetails movieDetail={movieDetail} score={score} genres={genres} />
 			)}
+
 			{isLoading && <Loader />}
+
 			{isError && <ErrorMessage />}
 
 			<h2 className={styles.additionalTitle}>Additional information</h2>
+
 			<SubNavigation />
 
 			<Outlet />

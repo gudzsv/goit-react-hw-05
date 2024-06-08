@@ -1,9 +1,9 @@
-import styles from './MovieReviewCard.module.css';
+import styles from './ReviewCard.module.css';
 
-import { IMG_DEFAULT_URL } from 'constants/api';
+import { DEFAULT_IMG_URL } from 'constants/api';
 import { IMG_URL } from 'constants/api';
 
-const MovieReviewCard = ({ reviews }) => {
+const ReviewCard = ({ reviews }) => {
 	return (
 		<>
 			{reviews.map(
@@ -13,7 +13,7 @@ const MovieReviewCard = ({ reviews }) => {
 						<div className={styles.reviewContentWrapper}>
 							<img
 								className={styles.reviewImage}
-								src={avatar_path ? IMG_URL + avatar_path : IMG_DEFAULT_URL}
+								src={avatar_path ? IMG_URL + avatar_path : DEFAULT_IMG_URL}
 								alt={author + ' avatar'}
 							/>
 							<div className={styles.reviewContent}>
@@ -33,4 +33,4 @@ const MovieReviewCard = ({ reviews }) => {
 	);
 };
 
-export default MovieReviewCard;
+export default ReviewCard;

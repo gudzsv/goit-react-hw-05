@@ -20,6 +20,14 @@
 	text-align: center;
 	font-weight: 700;
 	margin-top: 10px;
+	width: 250px;
+	height: 50px;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	line-clamp: 3;
+	text-overflow: ellipsis;
 }
 
 .cardDescription {

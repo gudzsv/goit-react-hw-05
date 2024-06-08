@@ -18,7 +18,7 @@ export const fetchTrendMovies = async () => {
 	return response.data;
 };
 
-export const fetchSearchMovie = async (query, page) => {
+export const fetchSearchMovie = async (query, page = 1) => {
 	const response = await axios.get(API_PATH.search, {
 		params: {
 			query,

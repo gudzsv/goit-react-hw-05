@@ -1,0 +1,19 @@
+.title {
+	font-size: 3rem;
+	font-weight: 700;
+	color: #535bf2;
+
+	text-transform: uppercase;
+
+	text-align: center;
+
+	position: relative;
+}
+
+.top {
+	margin-top: 50px;
+}
+
+.bottom {
+	margin-bottom: 50px;
+}

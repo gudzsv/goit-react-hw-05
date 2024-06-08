@@ -1,19 +1,24 @@
-import { IMG_DEFAULT_URL } from 'constants/api';
+import { DEFAULT_IMG_URL } from 'constants/api';
 import styles from './MovieCard.module.css';
 import { IMG_URL } from 'constants/api';
+import { DEFAULT_TITLE } from 'constants/api';
+import { DEFAULT_DATE } from 'constants/api';
 
 const MovieCard = ({ data: { poster_path, title, release_date } }) => {
 	return (
-		<div className={styles.cardWrapper}>
+		<>
 			<img
-				className={styles.cardImg}
-				src={poster_path ? IMG_URL + poster_path : IMG_DEFAULT_URL}
-				alt={title}
+				className={styles.avatarImg}
+				src={poster_path ? IMG_URL + poster_path : DEFAULT_IMG_URL}
+				alt={'avatar ' + title || DEFAULT_TITLE}
 				loading='lazy'
 			/>
-			<p className={styles.cardTitle}> {title}</p>
-			<p className={styles.cardDate}> {release_date}</p>
-		</div>
+			<div className={styles.cardContent}>
+				<hr className={styles.hr} />
+				<p className={styles.cardTitle}>{title || DEFAULT_TITLE}</p>
+				<p className={styles.cardDate}>{release_date || DEFAULT_DATE}</p>
+			</div>
+		</>
 	);
 };
 

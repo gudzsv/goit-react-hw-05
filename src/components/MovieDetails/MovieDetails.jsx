@@ -1,6 +1,6 @@
 import { IMG_URL } from 'constants/api';
 import styles from './MovieDetails.module.css';
-import { IMG_DEFAULT_URL } from 'constants/api';
+import { DEFAULT_IMG_URL } from 'constants/api';
 
 const MovieDetails = ({
 	movieDetail: { backdrop_path, title, overview },
@@ -11,7 +11,7 @@ const MovieDetails = ({
 		<div className={styles.contentWrapper}>
 			<img
 				className={styles.posterImg}
-				src={backdrop_path ? IMG_URL + backdrop_path : IMG_DEFAULT_URL}
+				src={backdrop_path ? IMG_URL + backdrop_path : DEFAULT_IMG_URL}
 				alt={title}
 			/>
 			<div className={styles.content}>

@@ -8,3 +8,10 @@
 .goBackBtn {
 	margin-bottom: 20px;
 }
+
+.additionalTitle {
+	margin-top: 50px;
+	text-transform: uppercase;
+	text-align: center;
+	color: #646cff;
+}

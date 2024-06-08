@@ -1,14 +1,14 @@
 import { IMG_URL } from 'constants/api';
-import { IMG_DEFAULT_URL } from 'constants/api';
+import { DEFAULT_IMG_URL } from 'constants/api';
 
-import styles from './MovieCastCard.module.css';
+import styles from './CastCard.module.css';
 
-const MovieCastCard = ({ data: { profile_path, name, character } }) => {
+const CastCard = ({ data: { profile_path, name, character } }) => {
 	return (
 		<>
 			<img
 				className={styles.avatarImg}
-				src={profile_path ? IMG_URL + profile_path : IMG_DEFAULT_URL}
+				src={profile_path ? IMG_URL + profile_path : DEFAULT_IMG_URL}
 				alt={'avatar ' + name}
 				loading='lazy'
 			/>
@@ -22,4 +22,4 @@ const MovieCastCard = ({ data: { profile_path, name, character } }) => {
 	);
 };
 
-export default MovieCastCard;
+export default CastCard;
